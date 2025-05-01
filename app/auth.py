@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import jwt
 import smtplib
+import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -14,7 +15,7 @@ client = AsyncIOMotorClient(MONGODB_URI_REMOTE)
 db = client["Notification"]
 users_collection = db["users"]
 
-# Email sending function
+# Email sending function with better error handling
 async def send_confirmation_email(email, confirmation_token):
     try:
         msg = MIMEMultipart()
@@ -37,15 +38,35 @@ async def send_confirmation_email(email, confirmation_token):
         
         msg.attach(MIMEText(body, 'html'))
         
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
-        server.send_message(msg)
-        server.quit()
+        context = ssl.create_default_context()
+        
+        print(f"Attempting to send email to: {email}")
+        print(f"Using account: {EMAIL_USERNAME}")
+        
+        # Connect with SSL
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
+            # Login
+            server.login(EMAIL_USERNAME, EMAIL_PASSWORD)
+            print("SMTP Login successful")
+            
+            # Send email
+            server.send_message(msg)
+            print(f"Email sent successfully to {email}")
         
         return True
+    except smtplib.SMTPAuthenticationError as auth_error:
+        print(f"SMTP Authentication Error: {auth_error}")
+        print("This is likely due to incorrect email/password or Gmail security settings.")
+        print("For Gmail, you need to:")
+        print("1. Enable 2-Step Verification on your Google account")
+        print("2. Create an App Password at https://myaccount.google.com/apppasswords")
+        print("3. Use that App Password instead of your regular password")
+        return False
+    except smtplib.SMTPException as smtp_error:
+        print(f"SMTP Error: {smtp_error}")
+        return False
     except Exception as e:
-        print(f"Email sending error: {e}")
+        print(f"General error sending email: {e}")
         return False
 
 # Generate confirmation token

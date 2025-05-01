@@ -1,6 +1,7 @@
 let isSubscribed = false;
 let userId = "";
-const subscribeBtn = document.getElementById("subscribeBtn");
+// Using the subscribeBtn variable that's already declared in auth.js
+// const subscribeBtn = document.getElementById("subscribeBtn");
 const log = document.getElementById('log');
 
 // Get user ID from localStorage or generate a new one if not exists

@@ -1,0 +1,116 @@
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 27, 42, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.auth-container {
+    background: linear-gradient(135deg, #1A2942, #0D1B2A);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    max-width: 90%;
+    text-align: center;
+    border: 1px solid #4C6A92;
+}
+
+.auth-container h3 {
+    color: #F1F1F1;
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.auth-container p {
+    color: #C5D3E2;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+#auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #243A59;
+    color: #F1F1F1;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#auth-form input:focus {
+    outline: none;
+    border-color: #4C6A92;
+    box-shadow: 0 0 10px rgba(76, 106, 146, 0.3);
+}
+
+#auth-form input::placeholder {
+    color: #8AA2C1;
+}
+
+#auth-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4C6A92;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+#auth-form button:hover {
+    background-color: #3A5173;
+}
+
+#auth-message {
+    margin-top: 15px;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.success-message {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #8CFF92;
+}
+
+.error-message {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #FF8C8C;
+}
+
+.loader {
+    border: 4px solid rgba(76, 106, 146, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #4C6A92;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 15px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button:disabled {
+    background-color: #6c7a8c !important;
+    cursor: not-allowed;
+}

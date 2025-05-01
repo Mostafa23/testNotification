@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="/pages/css/client.css">
+    <link rel="stylesheet" href="/pages/css/common.css">
+    <link rel="stylesheet" href="/pages/css/auth.css">
+    <link rel="icon" type="image/x-icon" href="/pages/images/favicon_client.ico">
+  </head>
+  <body>
+    <h2>Client Message Dashboard</h2>
+    
+    <br>
+
+    <div id="auth-overlay" class="auth-overlay">
+      <div class="auth-container">
+        <h3>Email Registration</h3>
+        <p>Please register with your email to receive notifications</p>
+        
+        <div id="auth-form">
+          <input type="email" id="email-input" placeholder="Enter your email" required>
+          <button id="register-btn">Register</button>
+          
+          <div id="login-section" style="display: none; margin-top: 20px;">
+            <p>Already registered? Login with your email</p>
+            <button id="login-btn">Login</button>
+          </div>
+        </div>
+        
+        <div id="auth-message"></div>
+        <div id="auth-loader" class="loader" style="display: none;"></div>
+      </div>
+    </div>
+
+    <h3>Incoming Notifications:</h3>
+    <div id="log" class="log"></div>
+
+    <button id="subscribeBtn" onclick="subscription()" disabled>Subscribe</button>
+    
+    <script src="/pages/js/auth.js"></script>
+    <script src="/pages/js/client.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Server</title>
+    <link rel="stylesheet" href="/pages/css/server.css">
+    <link rel="stylesheet" href="/pages/css/common.css">
+
+    <link rel="icon" type="image/x-icon" href="/pages/images/favicon_server.ico">
+  </head>
+  <body>
+    <h1>Server Panel</h1>
+
+    <br>
+    
+    <p>Broadcast messages to all <strong>subscribed</strong> clients.</p>
+
+    <textarea id="msg" placeholder="Write a message..."></textarea><br>
+    <button onclick="send()">Send Notification</button>
+
+    <hr>
+
+    <h3>Previous Sent Messages:</h3>
+    <div id="messages" class="log"></div>
+
+    <div class="count">Clients Connected: <span id="count-clients">0</span></div>
+    <div class="count">Subscribers Connected: <span id="count-subscribers">0</span></div>
+
+    <script src="/pages/js/server.js"></script>
+  </body>
+</html>

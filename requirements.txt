@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+websockets
+python-dotenv
+pymongo
+pydantic
+pydantic[email]
+bcrypt
+motor
+PyJWT
+email-validator

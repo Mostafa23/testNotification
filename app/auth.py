@@ -110,7 +110,15 @@ async def confirm_user(token):
     if user.get("is_confirmed", False):
         return True, "Email already confirmed"
     
-    if user.get("token_expiry") < datetime.now(timezone.utc):
+    # Fix: Convert token_expiry to datetime with timezone if it isn't already
+    token_expiry = user.get("token_expiry")
+    current_time = datetime.now(timezone.utc)
+    
+    # Check if token_expiry has a timezone; if not, assume it's UTC
+    if token_expiry.tzinfo is None:
+        token_expiry = token_expiry.replace(tzinfo=timezone.utc)
+    
+    if token_expiry < current_time:
         return False, "Confirmation token expired"
     
     await users_collection.update_one(
